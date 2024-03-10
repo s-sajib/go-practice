@@ -19,6 +19,22 @@ package main
 import "fmt"
 
 func main() {
-var products  = []  {{"a",1},{"b",2},{"c",3},{'d',4}}
-fmt.Print(products)
+	type product struct {
+		price int
+		name  string
+	}
+
+	shoppingList := [4]product{{10, "apple"}, {20, "orange"}, {30, "banana"}}
+	fmt.Println(shoppingList[2])
+	length := len(shoppingList)
+	fmt.Println(length)
+
+	sum := 0
+	for i := 0; i < length; i++ {
+		sum = sum + shoppingList[i].price
+	}
+	fmt.Println(sum)
+
+	shoppingList[3] = product{40, "jambura"}
+	fmt.Println(shoppingList)
 }
