@@ -17,29 +17,45 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 type Rectangle struct {
-	length int
-	width  int
+	x1 int
+	x2 int
+	y1 int
+	y2 int
 }
 
-func calculateArea(length, width int) int {
+func calculateWidth(rect Rectangle) int {
+	return int(math.Abs(float64(rect.x2 - rect.x1)))
+}
+func calculateLength(rect Rectangle) int {
+	return int(math.Abs(float64(rect.y2 - rect.y1)))
+}
+
+func calculateArea(rectangle Rectangle) int {
+	length := calculateLength(rectangle)
+	width := calculateWidth(rectangle)
 	return length * width
 }
 
-func calculatePermiter(length, width int) int {
+func calculatePermiter(rectangle Rectangle) int {
+	length := calculateLength(rectangle)
+	width := calculateWidth(rectangle)
 	return 2 * (length + width)
 }
 
 func main() {
 
-	firstRect := Rectangle{10, 8}
+	firstRect := Rectangle{x1: 0, y1: 0, x2: 10, y2: 10}
 	fmt.Println(firstRect)
-	fmt.Println(calculateArea(firstRect.length, firstRect.width))
-	firstRect.width = firstRect.width * 2
-	firstRect.length = firstRect.length * 2
-	fmt.Println(calculateArea(firstRect.length, firstRect.width))
-	fmt.Println(calculatePermiter(firstRect.length, firstRect.width))
+	fmt.Println(calculateArea(firstRect))
+	firstRect.x2 = firstRect.x2 * 2
+	firstRect.y2 = firstRect.y2 * 2
+	fmt.Println(calculateArea(firstRect))
+	fmt.Println(calculatePermiter(firstRect))
 
 }
