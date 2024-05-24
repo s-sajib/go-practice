@@ -18,5 +18,27 @@ import "fmt"
 
 type Part string
 
+// * Create a function to print out the contents of the assembly line
+func printAsselbly(parts []Part) {
+	for i := 0; i < len(parts); i++ {
+		fmt.Println(parts[i])
+	}
+}
+
 func main() {
+	// * Using a slice, create an assembly line that contains type Part
+	// * Perform the following:
+	//   - Create an assembly line having any three parts
+	assembly := []Part{"Part A", "Part B", "Part C"}
+	printAsselbly(assembly)
+	fmt.Println("---------------------------------")
+	//   - Add two new parts to the line
+	assembly = append(assembly, "Part D", "Part E")
+	printAsselbly(assembly)
+
+	fmt.Println("---------------------------------")
+	//   - Slice the assembly line so it contains only the two new parts
+	shortAssembly := assembly[3:]
+	printAsselbly(shortAssembly)
+
 }
